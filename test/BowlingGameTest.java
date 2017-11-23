@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
  */
 
 /**
- * @author Laura
+ * @author Quique
  *
  */
 class BowlingGameTest {
