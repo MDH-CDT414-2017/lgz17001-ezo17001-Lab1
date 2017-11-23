@@ -18,18 +18,40 @@ public class BowlingGame {
 		String[] numbers = resultsGame.replaceAll("\\[", "").replaceAll("\\]", ",").replaceAll("\\s", "").split(",");
 		int[] results = new int[numbers.length];
 		int totalResult = 0;
+		int frameStrike = -1;
 		
 		for (int i=0; i < numbers.length; i++) {
 			try {
 				results[i] = Integer.parseInt(numbers[i]);
 				int actualResult = results[i];
-				totalResult += actualResult;
+				if(i%2==0) {		
+					if(isSpare(actualResult)==true) {
+						frameStrike = i;
+					}else{	
+					}
+				}
+					totalResult += actualResult;
+				
 			} catch (NumberFormatException nfe) {
 				return (-1);
 			}	
 		}
-		return totalResult;
+		if(frameStrike > -1) {
+			int spareSum = results [frameStrike+2]+results[frameStrike+3];
+			totalResult += spareSum;
+			return totalResult;
+		}else {
+			return totalResult;
+		}
 		
+	}
+	
+	public boolean isSpare(int a) {
+		if(a==10) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }
