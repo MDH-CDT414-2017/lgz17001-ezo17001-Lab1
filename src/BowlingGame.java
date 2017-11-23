@@ -3,7 +3,7 @@
  */
 
 /**
- * @author Laura
+ * @author Enrique and Laura
  *
  */
 public class BowlingGame {
