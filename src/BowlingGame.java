@@ -25,7 +25,7 @@ public class BowlingGame {
 				results[i] = Integer.parseInt(numbers[i]);
 				int actualResult = results[i];
 				if(i%2==0) {		
-					if(isSpare(actualResult)==true) {
+					if(isStrike(actualResult)==true) {
 						frameStrike = i;
 					}else{	
 					}
@@ -37,8 +37,8 @@ public class BowlingGame {
 			}	
 		}
 		if(frameStrike > -1) {
-			int spareSum = results [frameStrike+2]+results[frameStrike+3];
-			totalResult += spareSum;
+			int strikeSum = results [frameStrike+2]+results[frameStrike+3];
+			totalResult += strikeSum;
 			return totalResult;
 		}else {
 			return totalResult;
@@ -46,7 +46,7 @@ public class BowlingGame {
 		
 	}
 	
-	public boolean isSpare(int a) {
+	public boolean isStrike(int a) {
 		if(a==10) {
 			return true;
 		}else {
