@@ -15,7 +15,7 @@ public class BowlingGame {
 	}
 	
 	public int getScore() {
-		String[] numbers = resultsGame.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "").split(",");
+		String[] numbers = resultsGame.replaceAll("\\[", "").replaceAll("\\]", ",").replaceAll("\\s", "").split(",");
 		int[] results = new int[numbers.length];
 		int totalResult = 0;
 		
