@@ -1,13 +1,11 @@
 /**
- * 
- */
-
-/**
  * @author Enrique and Laura
  *
  */
+
 public class BowlingGame {
 	private String resultsGame;
+
 	
 	//constructor
 	public BowlingGame (String game) {
@@ -18,40 +16,47 @@ public class BowlingGame {
 		String[] numbers = resultsGame.replaceAll("\\[", "").replaceAll("\\]", ",").replaceAll("\\s", "").split(",");
 		int[] results = new int[numbers.length];
 		int totalResult = 0;
-		int frameStrike = -1;
+		int[] frameStrike = new int[numbers.length];
+		int actualResult;
 		
 		for (int i=0; i < numbers.length; i++) {
 			try {
 				results[i] = Integer.parseInt(numbers[i]);
-				int actualResult = results[i];
+				actualResult = results[i];
 				if(i%2==0) {		
-					if(isStrike(actualResult)==true) {
-						frameStrike = i;
+					if(actualResult == 10) {
+						frameStrike[i] = 1;
 					}else{	
+						frameStrike[i] = 0;
 					}
 				}
-					totalResult += actualResult;
-				
+				totalResult += actualResult;
 			} catch (NumberFormatException nfe) {
 				return (-1);
 			}	
 		}
-		if(frameStrike > -1) {
-			int strikeSum = results [frameStrike+2]+results[frameStrike+3];
-			totalResult += strikeSum;
-			return totalResult;
-		}else {
-			return totalResult;
-		}
 		
+		int resultStrike = calculateStrike(frameStrike, results);
+		totalResult+=resultStrike;
+		return totalResult;
 	}
 	
-	public boolean isStrike(int a) {
-		if(a==10) {
-			return true;
-		}else {
-			return false;
+	public int calculateStrike (int[] arrayStrikes, int[] arrayResults) {
+		int resultStrike = 0;
+		for(int i=0 ; i < arrayResults.length ; i++) {
+			if(arrayStrikes[i] == 1) {
+				if(arrayStrikes[i+2] == 1) {
+					int strikeSum = (arrayResults[i+2] + arrayResults[i+4]);
+					resultStrike += strikeSum;
+				}else{	
+					int strikeSum = (arrayResults[i+2] + arrayResults[i+3]);
+					resultStrike += strikeSum;
+				}
+			}else{
+				resultStrike += 0;
+			}
 		}
+		return resultStrike;
 	}
-
+	
 }

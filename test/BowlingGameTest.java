@@ -66,6 +66,12 @@ class BowlingGameTest {
 		BowlingGame bowlingGame = new BowlingGame("[1,5][10,0][4,6]");
 		assertEquals(36, bowlingGame.getScore());
 	}
+	@Test
+	public void test5() {
+		BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][7,2]");
+		assertEquals(55, bowlingGame.getScore());
+	}
+	
 	
 
 
