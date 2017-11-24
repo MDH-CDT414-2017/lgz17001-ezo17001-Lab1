@@ -11,7 +11,7 @@ public class BowlingGame {
 	public BowlingGame (String game) {
 		resultsGame = game;
 	}
-	
+	//method getScore
 	public int getScore() {
 		String[] numbers = resultsGame.replaceAll("\\[", "").replaceAll("\\]", ",").replaceAll("\\s", "").split(",");
 		int[] results = new int[numbers.length];
