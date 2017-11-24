@@ -16,47 +16,45 @@ public class BowlingGame {
 		String[] numbers = resultsGame.replaceAll("\\[", "").replaceAll("\\]", ",").replaceAll("\\s", "").split(",");
 		int[] results = new int[numbers.length];
 		int totalResult = 0;
-		int[] frameStrike = new int[numbers.length];
 		int actualResult;
 		
 		for (int i=0; i < numbers.length; i++) {
 			try {
 				results[i] = Integer.parseInt(numbers[i]);
 				actualResult = results[i];
-				if(i%2==0) {		
-					if(actualResult == 10) {
-						frameStrike[i] = 1;
-					}else{	
-						frameStrike[i] = 0;
-					}
-				}
 				totalResult += actualResult;
 			} catch (NumberFormatException nfe) {
 				return (-1);
 			}	
 		}
 		
-		int resultStrike = calculateStrike(frameStrike, results);
-		totalResult+=resultStrike;
+		int bonus = calculateBonus(results);
+		totalResult+=bonus;
 		return totalResult;
 	}
 	
-	public int calculateStrike (int[] arrayStrikes, int[] arrayResults) {
-		int resultStrike = 0;
+	public int calculateBonus (int[] arrayResults) {
+		int resultBonus = 0;
+		int bonusSum;
 		for(int i=0 ; i < arrayResults.length ; i++) {
-			if(arrayStrikes[i] == 1) {
-				if(arrayStrikes[i+2] == 1) {
-					int strikeSum = (arrayResults[i+2] + arrayResults[i+4]);
-					resultStrike += strikeSum;
-				}else{	
-					int strikeSum = (arrayResults[i+2] + arrayResults[i+3]);
-					resultStrike += strikeSum;
-				}
-			}else{
-				resultStrike += 0;
+			if(i%2==0) {
+				if(arrayResults[i] == 10) {
+					if(arrayResults[i+2] == 10) {
+						bonusSum = (arrayResults[i+2] + arrayResults[i+4]);
+						resultBonus += bonusSum;
+					}else{	
+						bonusSum = (arrayResults[i+2] + arrayResults[i+3]);
+						resultBonus += bonusSum;
+					}
+				}else if ((arrayResults[i]+arrayResults[i+1]) == 10){
+					bonusSum = arrayResults[i+2];
+					resultBonus += bonusSum;
+				}	
+			}else {
+				resultBonus += 0;
 			}
 		}
-		return resultStrike;
+		return resultBonus;
 	}
 	
 }

@@ -58,20 +58,29 @@ class BowlingGameTest {
 	}
 	@Test
 	public void test3() {
-		BowlingGame bowlingGame = new BowlingGame("[1,5][2,3][4,6]");
-		assertEquals(21, bowlingGame.getScore());
+		BowlingGame bowlingGame = new BowlingGame("[1,5][2,3][3,6]");
+		assertEquals(20, bowlingGame.getScore());
 	}
 	@Test
 	public void test4() {
-		BowlingGame bowlingGame = new BowlingGame("[1,5][10,0][4,6]");
-		assertEquals(36, bowlingGame.getScore());
+		BowlingGame bowlingGame = new BowlingGame("[1,5][10,0][3,6]");
+		assertEquals(34, bowlingGame.getScore());
 	}
 	@Test
 	public void test5() {
 		BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][7,2]");
 		assertEquals(55, bowlingGame.getScore());
 	}
-	
+	@Test
+	public void test6() {
+		BowlingGame bowlingGame = new BowlingGame("[1,9][3,6]");
+		assertEquals(22, bowlingGame.getScore());
+	}
+	@Test
+	public void test7() {
+		BowlingGame bowlingGame = new BowlingGame("[1,9][4,6][3,2]");
+		assertEquals(32, bowlingGame.getScore());
+	}
 	
 
 
