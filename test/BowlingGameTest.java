@@ -95,10 +95,6 @@ public class BowlingGameTest {
 		BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][10,0][10,0][10,0][10,0][10,0][3,6][8,1][1,2][3,4][5,2]");
 		assertEquals(-1, bowlingGame.getScore());
 	}
-	@Test
-	public void allZeros() {
-		BowlingGame bowlingGame = new BowlingGame("[0,10][3,4][0,0][0,0][0,0][0,0][0,0][0,0][0,0][0,0]");
-		assertEquals(20, bowlingGame.getScore());
-	}
+	
 
 }
