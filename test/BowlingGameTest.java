@@ -1,56 +1,35 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-/**
- * 
- */
+public class BowlingGameTest {
 
-/**
- * @author Enrique and Laura
- *
- */
-class BowlingGameTest {
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeEach
-	void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterEach
-	void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 	}
-
 	@Test
 	public void test1() {
 		BowlingGame bowlingGame = new BowlingGame("");
 		assertEquals(-1, bowlingGame.getScore());
 	}
-	
+
 	@Test
 	public void testOpen() {
 		BowlingGame bowlingGame = new BowlingGame("[1,5][3,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]");
@@ -116,7 +95,10 @@ class BowlingGameTest {
 		BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][10,0][10,0][10,0][10,0][10,0][3,6][8,1][1,2][3,4][5,2]");
 		assertEquals(-1, bowlingGame.getScore());
 	}
-	
-
+	@Test
+	public void allZeros() {
+		BowlingGame bowlingGame = new BowlingGame("[0,10][3,4][0,0][0,0][0,0][0,0][0,0][0,0][0,0][0,0]");
+		assertEquals(20, bowlingGame.getScore());
+	}
 
 }
