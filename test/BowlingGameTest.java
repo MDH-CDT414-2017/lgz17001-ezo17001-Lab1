@@ -95,6 +95,54 @@ public class BowlingGameTest {
 		BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][10,0][10,0][10,0][10,0][10,0][3,6][8,1][1,2][3,4][5,2]");
 		assertEquals(-1, bowlingGame.getScore());
 	}
-	
-
+	@Test
+	public void testNull() {
+		BowlingGame bowlingGame = new BowlingGame(null);
+		assertEquals(-1, bowlingGame.getScore());
+	}
+	@Test
+	public void testFormat() {
+		BowlingGame bowlingGame = new BowlingGame("[1,5][3,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][10,0][7,2");
+		assertEquals(-1, bowlingGame.getScore());
+	}
+	@Test
+	public void testNegative() {
+		BowlingGame bowlingGame = new BowlingGame("[1,5][-3,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][10,0][7,2]");
+		assertEquals(-1, bowlingGame.getScore());
+	}
+	@Test
+	public void testTooHigh() {
+		BowlingGame bowlingGame = new BowlingGame("[1,5][13,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][10,0][7,2]");
+		assertEquals(-1, bowlingGame.getScore());
+	}
+	@Test
+	public void testTooHigh2() {
+		BowlingGame bowlingGame = new BowlingGame("[1,5][5,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][10,0][7,2]");
+		assertEquals(-1, bowlingGame.getScore());
+	}
+	@Test
+	public void testTooHigh3() {
+		BowlingGame bowlingGame = new BowlingGame("[1,5][5,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][10,0]");
+		assertEquals(-1, bowlingGame.getScore());
+	}
+	@Test
+	public void testTooHigh4() {
+		BowlingGame bowlingGame = new BowlingGame("[1,5][5,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][8,0]");
+		assertEquals(-1, bowlingGame.getScore());
+	}
+	@Test
+	public void testTooHigh5() {
+		BowlingGame bowlingGame = new BowlingGame("[1,5][5,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][10,0]");
+		assertEquals(-1, bowlingGame.getScore());
+	}
+	@Test
+	public void testTooHigh6() {
+		BowlingGame bowlingGame = new BowlingGame("[1,5][5,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][4,6]");
+		assertEquals(-1, bowlingGame.getScore());
+	}
+	@Test
+	public void testTooHigh7() {
+		BowlingGame bowlingGame = new BowlingGame("[1,5][5:6][7,2][3,6][4,4]");
+		assertEquals(-1, bowlingGame.getScore());
+	}
 }

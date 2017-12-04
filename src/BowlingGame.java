@@ -13,6 +13,12 @@ public class BowlingGame {
 	}
 	//method getScore
 	public int getScore() {
+		if(resultsGame==null) {
+			return -1;
+		}
+		if(resultsGame.startsWith("[")==false || resultsGame.endsWith("]")==false) {
+			return -1;
+		}
 		String[] numbers = resultsGame.replaceAll("\\[", "").replaceAll("\\]", ",").replaceAll("\\s", "").split(",");
 		int[] results = new int[numbers.length];
 		int totalResult = 0;
@@ -21,27 +27,41 @@ public class BowlingGame {
 		for (int i=0; i < numbers.length; i++) {
 			try {
 				results[i] = Integer.parseInt(numbers[i]);
+				if(results[i]<0) {
+					return -1;
+				}else if (results[i] > 10) {
+					return -1;
+				}
 				actualResult = results[i];
 				totalResult += actualResult;
 			} catch (NumberFormatException nfe) {
 				return (-1);
 			}	
 		}
+
 		if(numbers.length <20 || numbers.length > 22) {
 			return -1;
 		}else if(numbers.length == 22) {
 			if(results[18] == 10){
 				int bonus = calculateBonus(results);
+				if(bonus==-1) {
+					return -1;
+				}
 				totalResult+=bonus;
 				return totalResult;
 			}else {
 				return -1;
 			}
-		}else if(numbers.length == 21 && results[18]+results[19] != 10) {
+		}else if(numbers.length == 20 && (results[18] + results[19] == 10)) {
 				return -1;
 			
+		}else if(numbers.length == 21 && results[18]+results[19] != 10) {
+			return -1;
 		}else {
 			int bonus = calculateBonus(results);
+			if(bonus==-1) {
+				return -1;
+			}
 			totalResult+=bonus;
 			return totalResult;
 		}
@@ -53,7 +73,11 @@ public class BowlingGame {
 		int resultBonus = 0;
 		int bonusSum;
 		for(int i=0 ; i < 18 ; i++) {
+			
 			if(i%2==0) {
+				if(arrayResults[i]+arrayResults[i+1]>10) {
+					return -1;
+				}
 				if(arrayResults[i] == 10) {
 					if(arrayResults[i+2] == 10) {
 						bonusSum = (arrayResults[i+2] + arrayResults[i+4]);
@@ -68,7 +92,7 @@ public class BowlingGame {
 					resultBonus += bonusSum;	
 					}
 			}else {
-				resultBonus += 0;
+				//resultBonus += 0;
 			}
 		}
 		return resultBonus;
