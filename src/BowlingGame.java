@@ -22,7 +22,7 @@ public class BowlingGame {
 		String[] numbers = resultsGame.replaceAll("\\[", "").replaceAll("\\]", ",").replaceAll("\\s", "").split(",");
 		int[] results = new int[numbers.length];
 		int totalResult = 0;
-		int actualResult;
+		int actualResult; 
 		
 		for (int i=0; i < numbers.length; i++) {
 			try {
@@ -34,11 +34,12 @@ public class BowlingGame {
 				}
 				actualResult = results[i];
 				totalResult += actualResult;
+				
 			} catch (NumberFormatException nfe) {
 				return (-1);
 			}	
 		}
-
+		
 		if(numbers.length <20 || numbers.length > 22) {
 			return -1;
 		}else if(numbers.length == 22) {
@@ -52,12 +53,14 @@ public class BowlingGame {
 			}else {
 				return -1;
 			}
-		}else if(numbers.length == 20 && (results[18] + results[19] == 10)) {
+		}
+		else if(numbers.length == 20 &&(results[18]+results[19] == 10)) {
 				return -1;
-			
-		}else if(numbers.length == 21 && results[18]+results[19] != 10) {
+		}
+		else if(numbers.length == 21 && (results[18]+results[19] != 10)) {
 			return -1;
 		}else {
+		
 			int bonus = calculateBonus(results);
 			if(bonus==-1) {
 				return -1;

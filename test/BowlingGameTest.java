@@ -145,4 +145,11 @@ public class BowlingGameTest {
 		BowlingGame bowlingGame = new BowlingGame("[1,5][5:6][7,2][3,6][4,4]");
 		assertEquals(-1, bowlingGame.getScore());
 	}
+	@Test
+	public void testTooHigh8() {
+		BowlingGame bowlingGame = new BowlingGame("[1,5][5,6][7,2][3,6][4,4][5,3][3,3][4,5][5,1][10,0]");
+		assertEquals(-1, bowlingGame.getScore());
+	}
+	
+
 }
